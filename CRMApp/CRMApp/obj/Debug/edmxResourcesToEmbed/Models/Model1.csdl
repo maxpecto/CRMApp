@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="musteriModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="musteriEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="liste" EntityType="musteriModel.liste" />
+    <EntitySet Name="ToDoList" EntityType="musteriModel.ToDoList" />
+    <AssociationSet Name="FK_ToDoList_liste" Association="musteriModel.FK_ToDoList_liste">
+      <End Role="liste" EntitySet="liste" />
+      <End Role="ToDoList" EntitySet="ToDoList" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="liste">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Adres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rey" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Sexs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ToDoList" Relationship="musteriModel.FK_ToDoList_liste" FromRole="liste" ToRole="ToDoList" />
+  </EntityType>
+  <EntityType Name="ToDoList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToDo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FirmaId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="liste" Relationship="musteriModel.FK_ToDoList_liste" FromRole="ToDoList" ToRole="liste" />
+  </EntityType>
+  <Association Name="FK_ToDoList_liste">
+    <End Type="musteriModel.liste" Role="liste" Multiplicity="1" />
+    <End Type="musteriModel.ToDoList" Role="ToDoList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="liste">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ToDoList">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

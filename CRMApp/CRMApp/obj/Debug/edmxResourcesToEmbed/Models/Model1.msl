@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="musteriModelStoreContainer" CdmEntityContainer="musteriEntities">
+    <EntitySetMapping Name="liste">
+      <EntityTypeMapping TypeName="musteriModel.liste">
+        <MappingFragment StoreEntitySet="liste">
+          <ScalarProperty Name="Sexs" ColumnName="Sexs" />
+          <ScalarProperty Name="Rey" ColumnName="Rey" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToDoList">
+      <EntityTypeMapping TypeName="musteriModel.ToDoList">
+        <MappingFragment StoreEntitySet="ToDoList">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
+          <ScalarProperty Name="ToDo" ColumnName="ToDo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

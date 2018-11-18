@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="musteriModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="liste">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="500" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rey" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Sexs" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ToDoList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ToDo" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FirmaId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <Association Name="FK_ToDoList_liste">
+    <End Role="liste" Type="Self.liste" Multiplicity="1" />
+    <End Role="ToDoList" Type="Self.ToDoList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="liste">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ToDoList">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="musteriModelStoreContainer">
+    <EntitySet Name="liste" EntityType="Self.liste" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ToDoList" EntityType="Self.ToDoList" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ToDoList_liste" Association="Self.FK_ToDoList_liste">
+      <End Role="liste" EntitySet="liste" />
+      <End Role="ToDoList" EntitySet="ToDoList" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
